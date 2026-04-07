@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Github, Linkedin, Mail, ExternalLink, Code2, User, Briefcase, ChevronRight, Phone } from "lucide-react";
+import { Github, Linkedin, Mail, ExternalLink, Code2, User, Briefcase, ChevronRight, Phone, Quote, Star } from "lucide-react";
 
 interface Project {
   id: number;
@@ -8,6 +8,15 @@ interface Project {
   image: string;
   tags: string[];
   link: string;
+}
+
+interface Testimonial {
+  id: number;
+  name: string;
+  role: string;
+  content: string;
+  avatar: string;
+  rating: number;
 }
 
 const projects: Project[] = [
@@ -45,6 +54,33 @@ const projects: Project[] = [
   }
 ];
 
+const testimonials: Testimonial[] = [
+  {
+    id: 1,
+    name: "Ricardo Santos",
+    role: "CEO na TechFlow",
+    content: "O trabalho entregue superou todas as nossas expectativas. A atenção aos detalhes e a performance do sistema são impecáveis.",
+    avatar: "https://picsum.photos/seed/person1/100/100",
+    rating: 5
+  },
+  {
+    id: 2,
+    name: "Ana Oliveira",
+    role: "Gerente de Produto na Innovate",
+    content: "Excelente profissional. Conseguiu transformar nossas ideias complexas em uma interface intuitiva e muito rápida.",
+    avatar: "https://picsum.photos/seed/person2/100/100",
+    rating: 5
+  },
+  {
+    id: 3,
+    name: "Marcos Lima",
+    role: "CTO na StartupX",
+    content: "Código limpo, bem documentado e entrega sempre dentro do prazo. Com certeza trabalharemos juntos novamente.",
+    avatar: "https://picsum.photos/seed/person3/100/100",
+    rating: 5
+  }
+];
+
 export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-indigo-100 selection:text-indigo-700">
@@ -67,6 +103,9 @@ export default function App() {
               </li>
               <li>
                 <a href="#projetos" className="text-sm font-medium text-slate-600 transition-colors hover:text-indigo-600">Meus Projetos</a>
+              </li>
+              <li>
+                <a href="#depoimentos" className="text-sm font-medium text-slate-600 transition-colors hover:text-indigo-600">Depoimentos</a>
               </li>
               <li>
                 <a href="#contato" className="rounded-full bg-indigo-600 px-5 py-2 text-sm font-medium text-white transition-all hover:bg-indigo-700 hover:shadow-lg hover:shadow-indigo-200">Contato</a>
@@ -131,7 +170,7 @@ export default function App() {
               >
                 <div className="aspect-square overflow-hidden rounded-3xl bg-indigo-100 shadow-2xl shadow-indigo-100">
                   <img 
-                    src="https://picsum.photos/seed/vibrant-developer-setup/800/800" 
+                    src="https://picsum.photos/seed/developer-futuristic-ui/800/800" 
                     alt="Desenvolvedor de Sistemas" 
                     className="h-full w-full object-cover transition-all duration-500 hover:scale-105 hover:brightness-110"
                     referrerPolicy="no-referrer"
@@ -203,6 +242,71 @@ export default function App() {
                         Ver Detalhes
                         <ExternalLink className="h-4 w-4" />
                       </a>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Seção Depoimentos */}
+        <section id="depoimentos" className="bg-slate-100 py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-16 text-center">
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="mb-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl"
+              >
+                O que dizem os clientes
+              </motion.h2>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="mx-auto max-w-2xl text-lg text-slate-600"
+              >
+                Confira o feedback de quem já trabalhou comigo em projetos de tecnologia.
+              </motion.p>
+            </div>
+
+            <div className="grid gap-8 md:grid-cols-3">
+              {testimonials.map((testimonial, index) => (
+                <motion.div
+                  key={testimonial.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="relative rounded-3xl bg-white p-8 shadow-xl shadow-slate-200/50 transition-all hover:-translate-y-2"
+                >
+                  <div className="absolute -top-4 left-8 rounded-2xl bg-indigo-600 p-3 text-white shadow-lg shadow-indigo-200">
+                    <Quote className="h-6 w-6" />
+                  </div>
+                  
+                  <div className="mb-6 flex gap-1">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+
+                  <p className="mb-8 text-slate-600 italic leading-relaxed">
+                    "{testimonial.content}"
+                  </p>
+
+                  <div className="flex items-center gap-4">
+                    <img 
+                      src={testimonial.avatar} 
+                      alt={testimonial.name}
+                      className="h-12 w-12 rounded-full object-cover"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div>
+                      <h4 className="font-bold text-slate-900">{testimonial.name}</h4>
+                      <p className="text-sm text-slate-500">{testimonial.role}</p>
                     </div>
                   </div>
                 </motion.div>
