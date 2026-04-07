@@ -131,9 +131,9 @@ export default function App() {
               >
                 <div className="aspect-square overflow-hidden rounded-3xl bg-indigo-100 shadow-2xl shadow-indigo-100">
                   <img 
-                    src="https://picsum.photos/seed/profile/800/800" 
-                    alt="Perfil" 
-                    className="h-full w-full object-cover mix-blend-multiply grayscale transition-all hover:grayscale-0"
+                    src="https://picsum.photos/seed/vibrant-developer-setup/800/800" 
+                    alt="Desenvolvedor de Sistemas" 
+                    className="h-full w-full object-cover transition-all duration-500 hover:scale-105 hover:brightness-110"
                     referrerPolicy="no-referrer"
                   />
                 </div>
